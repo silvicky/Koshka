@@ -193,6 +193,7 @@ public class KoshkaBody extends JWindow {
                     windowX=screenWidth-windowWidth;
                     curImage=4;
                     setDelay(500);
+                    break;
                 }
                 if(ran()<10)play(clips[0]);
                 break;
