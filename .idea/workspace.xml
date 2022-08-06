@@ -9,9 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Fixed glitch on Linux.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Added sounds.">
       <change beforePath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaBody.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/audio/audio.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/audio/audio.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659774586645</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added sounds.">
+      <created>1659779044266</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1659779044266</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,6 +140,7 @@
     <MESSAGE value="Implemented mouse interactive function." />
     <MESSAGE value="Updated climb function." />
     <MESSAGE value="Fixed glitch on Linux." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed glitch on Linux." />
+    <MESSAGE value="Added sounds." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added sounds." />
   </component>
 </project>
