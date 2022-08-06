@@ -10,6 +10,8 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
+import static java.lang.Math.random;
+
 public class KoshkaBody extends JWindow {
     ImageIcon[] images;
     int windowWidth,windowHeight;
@@ -89,6 +91,10 @@ public class KoshkaBody extends JWindow {
     {
         timer.setDelay((int) (ms/delayRatio));
     }
+    int ran()
+    {
+        return (int) (random()*1000);
+    }
     void migrate()
     {
         switch(curImage)
@@ -101,29 +107,55 @@ public class KoshkaBody extends JWindow {
                 {
                     windowX=0;
                     curImage=2;
-                    setDelay(1000);
+                    setDelay(500);
                 }
                 break;
             case 2:
             case 3:
                 curImage=5-curImage;
                 windowY-=10;
+                if(windowY>=0&&ran()<10)
+                {
+                    curImage=16;
+                    delay=50;
+                    vX=2;
+                    vY=10;
+                    setDelay(50);
+                    break;
+                }
                 if(windowY<0)
                 {
-                    windowY=screenHeight-windowHeight;
-                    curImage=6;
-                    setDelay(200);
+                    windowY=0;
+                    curImage=16;
+                    delay=50;
+                    vX=2;
+                    vY=10;
+                    setDelay(50);
+                    break;
                 }
                 break;
             case 4:
             case 5:
                 curImage=9-curImage;
                 windowY-=10;
+                if(windowY>=0&&ran()<10)
+                {
+                    curImage=16;
+                    delay=50;
+                    vX=-2;
+                    vY=10;
+                    setDelay(50);
+                    break;
+                }
                 if(windowY<0)
                 {
-                    windowY=screenHeight-windowHeight;
-                    curImage=0;
-                    setDelay(200);
+                    windowY=0;
+                    curImage=16;
+                    delay=50;
+                    vX=-2;
+                    vY=10;
+                    setDelay(50);
+                    break;
                 }
                 break;
             case 6:
@@ -134,7 +166,7 @@ public class KoshkaBody extends JWindow {
                 {
                     windowX=screenWidth-windowWidth;
                     curImage=4;
-                    setDelay(1000);
+                    setDelay(500);
                 }
                 break;
             case 16:

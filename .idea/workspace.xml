@@ -9,12 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Implemented basic function.">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Koshka.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Implemented mouse interactive function.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/images.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/images.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +92,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659717393728</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Implemented mouse interactive function.">
+      <created>1659767060546</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1659767060546</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -112,6 +116,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit." />
     <MESSAGE value="Implemented basic function." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented basic function." />
+    <MESSAGE value="Implemented mouse interactive function." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented mouse interactive function." />
   </component>
 </project>
