@@ -23,7 +23,8 @@ public class KoshkaBody extends JWindow {
     int imageCount;
     int clipCount;
     int curImage;
-    int state;
+    int lastFrame;
+    int framesInThisState;
     int delay;
     double delayRatio=1;
     Timer timer;
@@ -114,20 +115,7 @@ public class KoshkaBody extends JWindow {
     }
     int ran()
     {
-        return (int) (random()*1000);
-    }
-    class AudioListener implements LineListener {
-        private boolean done = false;
-        @Override public synchronized void update(LineEvent event) {
-            LineEvent.Type eventType = event.getType();
-            if (eventType == LineEvent.Type.STOP || eventType == LineEvent.Type.CLOSE) {
-                done = true;
-                notifyAll();
-            }
-        }
-        public synchronized void waitUntilDone() throws InterruptedException {
-            while (!done) { wait(); }
-        }
+        return (int) (random()*10000);
     }
     void play(Clip c) throws InterruptedException {
         c.stop();
@@ -142,16 +130,18 @@ public class KoshkaBody extends JWindow {
                 windowX -= 10;
                 if (windowX < 0) {
                     windowX = 0;
-                    if (ran() < 200) {
+                    if (ran() < 2000) {
                         curImage = 2;
                         setDelay(500);
                     } else curImage = 6;
                     break;
                 }
-                if (ran() < 10) play(clips[0]);
-                if (ran() < 10)
+                if (ran() < 100) play(clips[0]);
+                if (ran() < 1)
                 {
                     curImage = 17;
+                    lastFrame=0;
+                    framesInThisState=0;
                     setDelay(500);
                 }
                 break;
@@ -159,7 +149,7 @@ public class KoshkaBody extends JWindow {
             case 3:
                 curImage = 5 - curImage;
                 windowY -= 10;
-                if (windowY >= 0 && ran() < 10) {
+                if (windowY >= 0 && ran() < 100) {
                     startFall(false);
                     break;
                 }
@@ -168,13 +158,13 @@ public class KoshkaBody extends JWindow {
                     startFall(false);
                     break;
                 }
-                if (ran() < 10) play(clips[0]);
+                if (ran() < 100) play(clips[0]);
                 break;
             case 4:
             case 5:
                 curImage = 9 - curImage;
                 windowY -= 10;
-                if (windowY >= 0 && ran() < 10) {
+                if (windowY >= 0 && ran() < 100) {
                     startFall(true);
                     break;
                 }
@@ -183,7 +173,7 @@ public class KoshkaBody extends JWindow {
                     startFall(true);
                     break;
                 }
-                if (ran() < 10) play(clips[0]);
+                if (ran() < 100) play(clips[0]);
                 break;
             case 6:
             case 7:
@@ -191,16 +181,18 @@ public class KoshkaBody extends JWindow {
                 windowX += 10;
                 if (windowX > screenWidth - windowWidth) {
                     windowX = screenWidth - windowWidth;
-                    if (ran() < 200) {
+                    if (ran() < 2000) {
                         curImage = 4;
                         setDelay(500);
                     } else curImage = 0;
                     break;
                 }
-                if (ran() < 10) play(clips[0]);
-                if (ran() < 10)
+                if (ran() < 100) play(clips[0]);
+                if (ran() < 1)
                 {
                     curImage = 17;
+                    lastFrame=6;
+                    framesInThisState=0;
                     setDelay(500);
                 }
                 break;
@@ -221,9 +213,10 @@ public class KoshkaBody extends JWindow {
                 play(clips[0]);
             case 18:
                 curImage=35-curImage;
-                if(ran()<100)
+                framesInThisState++;
+                if(framesInThisState>=20)
                 {
-                    curImage=0;
+                    curImage=lastFrame;
                     setDelay(200);
                 }
                 break;
