@@ -1,6 +1,7 @@
 package io.silvicky.Koshka;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -14,11 +15,13 @@ import static java.lang.Math.random;
 
 public class KoshkaBody extends JWindow {
     ImageIcon[] images;
+    Clip[] clips;
     int windowWidth,windowHeight;
     int windowX,windowY;
     int vX,vY;
     int screenWidth,screenHeight;
     int imageCount;
+    int clipCount;
     int curImage;
     int state;
     int delay;
@@ -53,10 +56,21 @@ public class KoshkaBody extends JWindow {
             images[i]=new ImageIcon(result);
         }
     }
-    public KoshkaBody() throws IOException {
+    void readAudio() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        BufferedReader in=new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/audio/audio.txt")));
+        clipCount= Integer.parseInt(readLine(in));
+        clips=new Clip[clipCount];
+        for(int i=0;i<clipCount;i++)
+        {
+            clips[i]=AudioSystem.getClip();
+            clips[i].open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream("/audio/"+readLine(in))));
+        }
+    }
+    public KoshkaBody() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         setAlwaysOnTop(true);
         setBackground(new Color(0,0,0,0));
         readImages();
+        readAudio();
         GraphicsConfiguration gc=getGraphicsConfiguration();
         Insets insets=getInsets();
         windowWidth=images[0].getIconWidth();
@@ -85,7 +99,11 @@ public class KoshkaBody extends JWindow {
             repaint();
             setSize(windowWidth,windowHeight);
             repaint();
-            migrate();
+            try {
+                migrate();
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
         });
         timer.setRepeats(true);
         timer.start();
@@ -98,8 +116,25 @@ public class KoshkaBody extends JWindow {
     {
         return (int) (random()*1000);
     }
-    void migrate()
-    {
+    class AudioListener implements LineListener {
+        private boolean done = false;
+        @Override public synchronized void update(LineEvent event) {
+            LineEvent.Type eventType = event.getType();
+            if (eventType == LineEvent.Type.STOP || eventType == LineEvent.Type.CLOSE) {
+                done = true;
+                notifyAll();
+            }
+        }
+        public synchronized void waitUntilDone() throws InterruptedException {
+            while (!done) { wait(); }
+        }
+    }
+    void play(Clip c) throws InterruptedException {
+        c.stop();
+        c.setFramePosition(0);
+        c.start();
+    }
+    void migrate() throws InterruptedException {
         switch(curImage)
         {
             case 0:
@@ -111,7 +146,9 @@ public class KoshkaBody extends JWindow {
                     windowX=0;
                     curImage=2;
                     setDelay(500);
+                    break;
                 }
+                if(ran()<10)play(clips[0]);
                 break;
             case 2:
             case 3:
@@ -119,23 +156,16 @@ public class KoshkaBody extends JWindow {
                 windowY-=10;
                 if(windowY>=0&&ran()<10)
                 {
-                    curImage=16;
-                    delay=50;
-                    vX=2;
-                    vY=10;
-                    setDelay(50);
+                    startFall(false);
                     break;
                 }
                 if(windowY<0)
                 {
                     windowY=0;
-                    curImage=16;
-                    delay=50;
-                    vX=2;
-                    vY=10;
-                    setDelay(50);
+                    startFall(false);
                     break;
                 }
+                if(ran()<10)play(clips[0]);
                 break;
             case 4:
             case 5:
@@ -143,23 +173,16 @@ public class KoshkaBody extends JWindow {
                 windowY-=10;
                 if(windowY>=0&&ran()<10)
                 {
-                    curImage=16;
-                    delay=50;
-                    vX=-2;
-                    vY=10;
-                    setDelay(50);
+                    startFall(true);
                     break;
                 }
                 if(windowY<0)
                 {
                     windowY=0;
-                    curImage=16;
-                    delay=50;
-                    vX=-2;
-                    vY=10;
-                    setDelay(50);
+                    startFall(true);
                     break;
                 }
+                if(ran()<10)play(clips[0]);
                 break;
             case 6:
             case 7:
@@ -171,6 +194,7 @@ public class KoshkaBody extends JWindow {
                     curImage=4;
                     setDelay(500);
                 }
+                if(ran()<10)play(clips[0]);
                 break;
             case 16:
                 windowX+=vX;
@@ -189,7 +213,11 @@ public class KoshkaBody extends JWindow {
         FormListener() {}
         public void mouseClicked(MouseEvent evt) {
             if (evt.getSource() == imageLabel) {
-                click();
+                try {
+                    click();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
 
@@ -217,30 +245,31 @@ public class KoshkaBody extends JWindow {
             }
         }
     }
-    void click()
-    {
+    private void startFall(boolean side) throws InterruptedException {
+        curImage=16;
+        delay=50;
+        vX=side?-2:2;
+        vY=10;
+        play(clips[1]);
+        setDelay(50);
+    }
+    void click() throws InterruptedException {
         switch (curImage)
         {
             case 2:
             case 3:
             case 10:
             case 11:
-                curImage=16;
-                delay=50;
-                vX=2;
-                vY=10;
-                setDelay(50);
+                startFall(false);
                 break;
             case 4:
             case 5:
             case 12:
             case 13:
-                curImage=16;
-                delay=50;
-                vX=-2;
-                vY=10;
-                setDelay(50);
+                startFall(true);
                 break;
+            default:
+                play(clips[0]);
         }
     }
     void enter()
@@ -259,7 +288,7 @@ public class KoshkaBody extends JWindow {
             delay=200;
         }
     }
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, UnsupportedAudioFileException, LineUnavailableException {
         KoshkaBody koshkaBody=new KoshkaBody();
     }
 }
