@@ -1,7 +1,7 @@
-17
+19
 128
 128
-#Normal
+#Normal 0...7
 0.png
 0
 false
@@ -26,7 +26,7 @@ true
 1.png
 0
 true
-#Watch
+#Watch 8...15
 2.png
 0
 false
@@ -51,7 +51,14 @@ true
 3.png
 0
 true
-#Fall
+#Fall 16
 4.png
+0
+false
+#Flag 17...18
+5.png
+0
+false
+6.png
 0
 false

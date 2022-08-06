@@ -135,67 +135,74 @@ public class KoshkaBody extends JWindow {
         c.start();
     }
     void migrate() throws InterruptedException {
-        switch(curImage)
-        {
+        switch(curImage) {
             case 0:
             case 1:
-                curImage=1-curImage;
-                windowX-=10;
-                if(windowX<0)
-                {
-                    windowX=0;
-                    curImage=2;
-                    setDelay(500);
+                curImage = 1 - curImage;
+                windowX -= 10;
+                if (windowX < 0) {
+                    windowX = 0;
+                    if (ran() < 200) {
+                        curImage = 2;
+                        setDelay(500);
+                    } else curImage = 6;
                     break;
                 }
-                if(ran()<10)play(clips[0]);
+                if (ran() < 10) play(clips[0]);
+                if (ran() < 10)
+                {
+                    curImage = 17;
+                    setDelay(500);
+                }
                 break;
             case 2:
             case 3:
-                curImage=5-curImage;
-                windowY-=10;
-                if(windowY>=0&&ran()<10)
-                {
+                curImage = 5 - curImage;
+                windowY -= 10;
+                if (windowY >= 0 && ran() < 10) {
                     startFall(false);
                     break;
                 }
-                if(windowY<0)
-                {
-                    windowY=0;
+                if (windowY < 0) {
+                    windowY = 0;
                     startFall(false);
                     break;
                 }
-                if(ran()<10)play(clips[0]);
+                if (ran() < 10) play(clips[0]);
                 break;
             case 4:
             case 5:
-                curImage=9-curImage;
-                windowY-=10;
-                if(windowY>=0&&ran()<10)
-                {
+                curImage = 9 - curImage;
+                windowY -= 10;
+                if (windowY >= 0 && ran() < 10) {
                     startFall(true);
                     break;
                 }
-                if(windowY<0)
-                {
-                    windowY=0;
+                if (windowY < 0) {
+                    windowY = 0;
                     startFall(true);
                     break;
                 }
-                if(ran()<10)play(clips[0]);
+                if (ran() < 10) play(clips[0]);
                 break;
             case 6:
             case 7:
-                curImage=13-curImage;
-                windowX+=10;
-                if(windowX>screenWidth-windowWidth)
-                {
-                    windowX=screenWidth-windowWidth;
-                    curImage=4;
-                    setDelay(500);
+                curImage = 13 - curImage;
+                windowX += 10;
+                if (windowX > screenWidth - windowWidth) {
+                    windowX = screenWidth - windowWidth;
+                    if (ran() < 200) {
+                        curImage = 4;
+                        setDelay(500);
+                    } else curImage = 0;
                     break;
                 }
-                if(ran()<10)play(clips[0]);
+                if (ran() < 10) play(clips[0]);
+                if (ran() < 10)
+                {
+                    curImage = 17;
+                    setDelay(500);
+                }
                 break;
             case 16:
                 windowX+=vX;
@@ -209,6 +216,17 @@ public class KoshkaBody extends JWindow {
                     play(clips[2]);
                     setDelay(200);
                 }
+                break;
+            case 17:
+                play(clips[0]);
+            case 18:
+                curImage=35-curImage;
+                if(ran()<100)
+                {
+                    curImage=0;
+                    setDelay(200);
+                }
+                break;
         }
     }
     class FormListener implements MouseListener {
