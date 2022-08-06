@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Koshka">
+    <output-path>$PROJECT_DIR$/out/artifacts/Koshka</output-path>
+    <root id="archive" name="Koshka.jar">
+      <element id="module-output" name="Koshka" />
+    </root>
+  </artifact>
+</component>

@@ -8,46 +8,46 @@ import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.*;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
 
 public class KoshkaBody extends JWindow {
     ImageIcon[] images;
     int windowWidth,windowHeight;
     int windowX,windowY;
+    int vX,vY;
     int screenWidth,screenHeight;
     int imageCount;
     int curImage;
     int state;
     int delay;
-    double delayRatio=10;
-    final String imagesCfg="./target/classes/images/images.txt";
-    final String curDir="./target/classes/images/";
+    double delayRatio=1;
     Timer timer;
     JLabel imageLabel;
+    String readLine(BufferedReader in) throws IOException {
+        String tmp="#";
+        while(tmp.startsWith("#"))tmp=in.readLine();
+        return tmp;
+    }
     void readImages() throws IOException {
-        BufferedReader in=new BufferedReader(new FileReader(imagesCfg));
-        imageCount=Integer.parseInt(in.readLine());
-        windowWidth=Integer.parseInt(in.readLine());
-        windowHeight=Integer.parseInt(in.readLine());
+        BufferedReader in=new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/images/images.txt")));
+        imageCount=Integer.parseInt(readLine(in));
+        windowWidth=Integer.parseInt(readLine(in));
+        windowHeight=Integer.parseInt(readLine(in));
         images=new ImageIcon[imageCount];
         int rot;
         boolean isFlipped;
         String fileName;
         for(int i=0;i<imageCount;i++)
         {
-            fileName=in.readLine();
-            rot=Integer.parseInt(in.readLine());
-            isFlipped=Boolean.parseBoolean(in.readLine());
+            fileName=readLine(in);
+            rot=Integer.parseInt(readLine(in));
+            isFlipped=Boolean.parseBoolean(readLine(in));
             BufferedImage result=new BufferedImage(windowWidth,windowHeight,2);
             Graphics2D g=GraphicsEnvironment.getLocalGraphicsEnvironment().createGraphics(result);
             AffineTransform tx=AffineTransform.getScaleInstance(isFlipped?-1:1,1);
             if(isFlipped)tx.translate(-windowWidth,0);
             tx.rotate(Math.toRadians(rot),windowWidth/2, windowHeight/2);
-            g.drawImage(ImageIO.read(new File(curDir+fileName)),new AffineTransformOp(tx,AffineTransformOp.TYPE_NEAREST_NEIGHBOR),0,0);
+            g.drawImage(ImageIO.read(getClass().getResourceAsStream("/images/"+fileName)),new AffineTransformOp(tx,AffineTransformOp.TYPE_NEAREST_NEIGHBOR),0,0);
             images[i]=new ImageIcon(result);
         }
     }
@@ -63,7 +63,8 @@ public class KoshkaBody extends JWindow {
         screenHeight= (int) gc.getBounds().getHeight();
         setSize(windowWidth,windowHeight);
         imageLabel=new JLabel();
-        imageLabel.addMouseListener(new FormListener());
+        FormListener formListener=new FormListener();
+        imageLabel.addMouseListener(formListener);
         getContentPane().add(imageLabel, BorderLayout.CENTER);
         imageLabel.setSize(windowWidth,windowHeight);
         imageLabel.setBackground(new Color(0,0,0,0));
@@ -129,36 +130,98 @@ public class KoshkaBody extends JWindow {
             case 7:
                 curImage=13-curImage;
                 windowX+=10;
-                if(windowX+windowWidth>screenWidth)
+                if(windowX>screenWidth-windowWidth)
                 {
                     windowX=screenWidth-windowWidth;
                     curImage=4;
                     setDelay(1000);
                 }
                 break;
+            case 16:
+                windowX+=vX;
+                windowY+=vY;
+                vY+=10;
+                if(windowY>screenHeight-windowHeight)
+                {
+                    windowY=screenHeight-windowHeight;
+                    if(vX>0)curImage=6;
+                    else curImage=0;
+                    setDelay(200);
+                }
         }
-    }
-    void imageClicked() {
-        System.exit(0);
     }
     class FormListener implements MouseListener {
         FormListener() {}
         public void mouseClicked(MouseEvent evt) {
             if (evt.getSource() == imageLabel) {
-                KoshkaBody.this.imageClicked();
+                click();
             }
         }
 
         public void mouseEntered(MouseEvent evt) {
+            if (evt.getSource() == imageLabel) {
+                enter();
+            }
         }
 
         public void mouseExited(MouseEvent evt) {
+            if (evt.getSource() == imageLabel) {
+                exit();
+            }
         }
 
         public void mousePressed(MouseEvent evt) {
+            if (evt.getSource() == imageLabel) {
+
+            }
         }
 
         public void mouseReleased(MouseEvent evt) {
+            if (evt.getSource() == imageLabel) {
+
+            }
+        }
+    }
+    void click()
+    {
+        switch (curImage)
+        {
+            case 2:
+            case 3:
+            case 10:
+            case 11:
+                curImage=16;
+                delay=50;
+                vX=2;
+                vY=10;
+                setDelay(50);
+                break;
+            case 4:
+            case 5:
+            case 12:
+            case 13:
+                curImage=16;
+                delay=50;
+                vX=-2;
+                vY=10;
+                setDelay(50);
+                break;
+        }
+    }
+    void enter()
+    {
+        if(curImage>=0&&curImage<=7)
+        {
+            curImage+=8;
+            delay=50;
+        }
+    }
+    void exit()
+    {
+        if(curImage>=8&&curImage<=15)
+        {
+            curImage-=8;
+            delay=200;
         }
     }
     public static void main(String[] args) throws IOException, InterruptedException {
