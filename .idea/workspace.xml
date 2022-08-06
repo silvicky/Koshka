@@ -9,9 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Rearranged migrate and repaint.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Filled transparent eyes." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -140,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659780163104</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Filled transparent eyes.">
+      <created>1659781356188</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1659781356188</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,6 +169,7 @@
     <MESSAGE value="Added hit ground sound." />
     <MESSAGE value="Synced some code." />
     <MESSAGE value="Rearranged migrate and repaint." />
-    <option name="LAST_COMMIT_MESSAGE" value="Rearranged migrate and repaint." />
+    <MESSAGE value="Filled transparent eyes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Filled transparent eyes." />
   </component>
 </project>

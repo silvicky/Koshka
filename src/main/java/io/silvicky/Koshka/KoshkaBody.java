@@ -63,7 +63,7 @@ public class KoshkaBody extends JWindow {
         for(int i=0;i<clipCount;i++)
         {
             clips[i]=AudioSystem.getClip();
-            clips[i].open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream("/audio/"+readLine(in))));
+            clips[i].open(AudioSystem.getAudioInputStream(new BufferedInputStream(getClass().getResourceAsStream("/audio/"+readLine(in)))));
         }
     }
     public KoshkaBody() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
