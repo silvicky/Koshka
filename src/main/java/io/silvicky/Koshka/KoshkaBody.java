@@ -81,6 +81,9 @@ public class KoshkaBody extends JWindow {
         {
             setLocation(windowX,windowY);
             imageLabel.setIcon(images[curImage]);
+            setSize(windowWidth,windowHeight+1);
+            repaint();
+            setSize(windowWidth,windowHeight);
             repaint();
             migrate();
         });
