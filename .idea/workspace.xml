@@ -9,10 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Added sounds.">
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/audio/audio.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/audio/audio.txt" afterDir="false" />
-    </list>
+    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Synced some code." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,7 +117,21 @@
       <option name="project" value="LOCAL" />
       <updated>1659779044266</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added hit ground sound.">
+      <created>1659779592371</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1659779592371</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Synced some code.">
+      <created>1659779772010</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1659779772010</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -141,6 +152,8 @@
     <MESSAGE value="Updated climb function." />
     <MESSAGE value="Fixed glitch on Linux." />
     <MESSAGE value="Added sounds." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added sounds." />
+    <MESSAGE value="Added hit ground sound." />
+    <MESSAGE value="Synced some code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Synced some code." />
   </component>
 </project>

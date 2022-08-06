@@ -93,17 +93,17 @@ public class KoshkaBody extends JWindow {
         setVisible(true);
         timer = new Timer((int) (200/delayRatio), e ->
         {
+            try {
+                migrate();
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
             setLocation(windowX,windowY);
             imageLabel.setIcon(images[curImage]);
             setSize(windowWidth,windowHeight+1);
             repaint();
             setSize(windowWidth,windowHeight);
             repaint();
-            try {
-                migrate();
-            } catch (InterruptedException ex) {
-                throw new RuntimeException(ex);
-            }
         });
         timer.setRepeats(true);
         timer.start();
