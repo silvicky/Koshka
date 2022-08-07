@@ -19,7 +19,7 @@ public class KoshkaBody extends JWindow {
     int windowWidth,windowHeight;
     int windowX,windowY;
     int vX,vY;
-    int screenWidth,screenHeight;
+    int minX,minY,maxX,maxY;
     int imageCount;
     int clipCount;
     int curImage;
@@ -73,12 +73,12 @@ public class KoshkaBody extends JWindow {
         readImages();
         readAudio();
         GraphicsConfiguration gc=getGraphicsConfiguration();
-        Insets insets=getInsets();
-        windowWidth=images[0].getIconWidth();
-        windowHeight=images[0].getIconHeight();
-        screenWidth= (int) gc.getBounds().getWidth();
-        screenHeight= (int) gc.getBounds().getHeight();
+        Insets insets=Toolkit.getDefaultToolkit().getScreenInsets(gc);
         setSize(windowWidth,windowHeight);
+        minX=insets.left;
+        minY=insets.top;
+        maxX=(int)gc.getBounds().getWidth()-windowWidth-insets.right;
+        maxY=(int)gc.getBounds().getHeight()-windowHeight-insets.bottom;
         imageLabel=new JLabel();
         FormListener formListener=new FormListener();
         imageLabel.addMouseListener(formListener);
@@ -87,8 +87,8 @@ public class KoshkaBody extends JWindow {
         imageLabel.setBackground(new Color(0,0,0,0));
         imageLabel.setVisible(true);
         imageLabel.setOpaque(true);
-        windowX=screenWidth-windowWidth;
-        windowY=screenHeight-windowHeight;
+        windowX=maxX;
+        windowY=maxY;
         curImage=0;
         delay=200;
         setVisible(true);
@@ -117,7 +117,7 @@ public class KoshkaBody extends JWindow {
     {
         return (int) (random()*10000);
     }
-    void play(Clip c) throws InterruptedException {
+    void play(Clip c) {
         c.stop();
         c.setFramePosition(0);
         c.start();
@@ -128,8 +128,8 @@ public class KoshkaBody extends JWindow {
             case 1:
                 curImage = 1 - curImage;
                 windowX -= 10;
-                if (windowX < 0) {
-                    windowX = 0;
+                if (windowX < minX) {
+                    windowX = minX;
                     if (ran() < 2000) {
                         curImage = 2;
                         setDelay(500);
@@ -149,12 +149,12 @@ public class KoshkaBody extends JWindow {
             case 3:
                 curImage = 5 - curImage;
                 windowY -= 10;
-                if (windowY >= 0 && ran() < 100) {
+                if (windowY >= minY && ran() < 100) {
                     startFall(false);
                     break;
                 }
-                if (windowY < 0) {
-                    windowY = 0;
+                if (windowY < minY) {
+                    windowY = minY;
                     startFall(false);
                     break;
                 }
@@ -164,12 +164,12 @@ public class KoshkaBody extends JWindow {
             case 5:
                 curImage = 9 - curImage;
                 windowY -= 10;
-                if (windowY >= 0 && ran() < 100) {
+                if (windowY >= minY && ran() < 100) {
                     startFall(true);
                     break;
                 }
-                if (windowY < 0) {
-                    windowY = 0;
+                if (windowY < minY) {
+                    windowY = minY;
                     startFall(true);
                     break;
                 }
@@ -179,8 +179,8 @@ public class KoshkaBody extends JWindow {
             case 7:
                 curImage = 13 - curImage;
                 windowX += 10;
-                if (windowX > screenWidth - windowWidth) {
-                    windowX = screenWidth - windowWidth;
+                if (windowX > maxX) {
+                    windowX = maxX;
                     if (ran() < 2000) {
                         curImage = 4;
                         setDelay(500);
@@ -200,9 +200,9 @@ public class KoshkaBody extends JWindow {
                 windowX+=vX;
                 windowY+=vY;
                 vY+=10;
-                if(windowY>screenHeight-windowHeight)
+                if(windowY>maxY)
                 {
-                    windowY=screenHeight-windowHeight;
+                    windowY=maxY;
                     if(vX>0)curImage=6;
                     else curImage=0;
                     play(clips[2]);
@@ -226,11 +226,7 @@ public class KoshkaBody extends JWindow {
         FormListener() {}
         public void mouseClicked(MouseEvent evt) {
             if (evt.getSource() == imageLabel) {
-                try {
-                    click();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                click();
             }
         }
 
@@ -258,7 +254,7 @@ public class KoshkaBody extends JWindow {
             }
         }
     }
-    private void startFall(boolean side) throws InterruptedException {
+    private void startFall(boolean side) {
         curImage=16;
         delay=50;
         vX=side?-2:2;
@@ -266,7 +262,7 @@ public class KoshkaBody extends JWindow {
         play(clips[1]);
         setDelay(50);
     }
-    void click() throws InterruptedException {
+    void click(){
         switch (curImage)
         {
             case 2:
