@@ -52,7 +52,7 @@ public class KoshkaBody extends JWindow {
             Graphics2D g=GraphicsEnvironment.getLocalGraphicsEnvironment().createGraphics(result);
             AffineTransform tx=AffineTransform.getScaleInstance(isFlipped?-1:1,1);
             if(isFlipped)tx.translate(-windowWidth,0);
-            tx.rotate(Math.toRadians(rot),windowWidth/2, windowHeight/2);
+            tx.rotate(Math.toRadians(rot),(double)(windowWidth)/2, (double)(windowHeight)/2);
             g.drawImage(ImageIO.read(getClass().getResourceAsStream("/images/"+fileName)),new AffineTransformOp(tx,AffineTransformOp.TYPE_NEAREST_NEIGHBOR),0,0);
             images[i]=new ImageIcon(result);
         }
@@ -75,10 +75,10 @@ public class KoshkaBody extends JWindow {
         GraphicsConfiguration gc=getGraphicsConfiguration();
         Insets insets=Toolkit.getDefaultToolkit().getScreenInsets(gc);
         setSize(windowWidth,windowHeight);
-        minX=insets.left;
-        minY=insets.top;
-        maxX=(int)gc.getBounds().getWidth()-windowWidth-insets.right;
-        maxY=(int)gc.getBounds().getHeight()-windowHeight-insets.bottom;
+        minX=(int)gc.getBounds().getMinX()+insets.left;
+        minY=(int)gc.getBounds().getMinY()+insets.top;
+        maxX=(int)gc.getBounds().getMaxX()-windowWidth-insets.right;
+        maxY=(int)gc.getBounds().getMaxY()-windowHeight-insets.bottom;
         imageLabel=new JLabel();
         FormListener formListener=new FormListener();
         imageLabel.addMouseListener(formListener);
@@ -226,19 +226,19 @@ public class KoshkaBody extends JWindow {
         FormListener() {}
         public void mouseClicked(MouseEvent evt) {
             if (evt.getSource() == imageLabel) {
-                click();
+                mouseClick();
             }
         }
 
         public void mouseEntered(MouseEvent evt) {
             if (evt.getSource() == imageLabel) {
-                enter();
+                mouseEnter();
             }
         }
 
         public void mouseExited(MouseEvent evt) {
             if (evt.getSource() == imageLabel) {
-                exit();
+                mouseExit();
             }
         }
 
@@ -254,7 +254,7 @@ public class KoshkaBody extends JWindow {
             }
         }
     }
-    private void startFall(boolean side) {
+    void startFall(boolean side) {
         curImage=16;
         delay=50;
         vX=side?-2:2;
@@ -262,7 +262,7 @@ public class KoshkaBody extends JWindow {
         play(clips[1]);
         setDelay(50);
     }
-    void click(){
+    void mouseClick(){
         switch (curImage)
         {
             case 2:
@@ -281,7 +281,7 @@ public class KoshkaBody extends JWindow {
                 play(clips[0]);
         }
     }
-    void enter()
+    void mouseEnter()
     {
         if(curImage>=0&&curImage<=7)
         {
@@ -289,7 +289,7 @@ public class KoshkaBody extends JWindow {
             delay=50;
         }
     }
-    void exit()
+    void mouseExit()
     {
         if(curImage>=8&&curImage<=15)
         {
@@ -297,7 +297,12 @@ public class KoshkaBody extends JWindow {
             delay=200;
         }
     }
-    public static void main(String[] args) throws IOException, InterruptedException, UnsupportedAudioFileException, LineUnavailableException {
+    void exit()
+    {
+        timer.stop();
+        dispose();
+    }
+    public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         KoshkaBody koshkaBody=new KoshkaBody();
     }
 }
