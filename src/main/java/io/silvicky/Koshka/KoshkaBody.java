@@ -123,6 +123,7 @@ public class KoshkaBody extends JWindow {
         c.start();
     }
     void migrate() throws InterruptedException {
+        int sran;
         switch(curImage) {
             case 0:
             case 1:
@@ -137,12 +138,22 @@ public class KoshkaBody extends JWindow {
                     break;
                 }
                 if (ran() < 100) play(clips[0]);
-                if (ran() < 1)
+                sran=ran();
+                if (sran < 1)
                 {
                     curImage = 17;
                     lastFrame=0;
                     framesInThisState=0;
                     setDelay(500);
+                    break;
+                }
+                else if(sran<20)
+                {
+                    curImage = 19;
+                    lastFrame=0;
+                    framesInThisState=0;
+                    setDelay(500);
+                    break;
                 }
                 break;
             case 2:
@@ -188,12 +199,21 @@ public class KoshkaBody extends JWindow {
                     break;
                 }
                 if (ran() < 100) play(clips[0]);
-                if (ran() < 1)
+                sran=ran();
+                if (sran < 1)
                 {
                     curImage = 17;
                     lastFrame=6;
                     framesInThisState=0;
                     setDelay(500);
+                }
+                else if(sran<20)
+                {
+                    curImage = 21;
+                    lastFrame=6;
+                    framesInThisState=0;
+                    setDelay(500);
+                    break;
                 }
                 break;
             case 16:
@@ -219,6 +239,36 @@ public class KoshkaBody extends JWindow {
                     curImage=lastFrame;
                     setDelay(200);
                 }
+                break;
+            case 19:
+            case 20:
+                curImage=39-curImage;
+                framesInThisState++;
+                if(framesInThisState>=10)
+                {
+                    setDelay(2000);
+                    curImage=21;
+                    break;
+                }
+                break;
+            case 21:
+                curImage=0;
+                setDelay(200);
+                break;
+            case 22:
+            case 23:
+                curImage=45-curImage;
+                framesInThisState++;
+                if(framesInThisState>=10)
+                {
+                    setDelay(2000);
+                    curImage=24;
+                    break;
+                }
+                break;
+            case 24:
+                curImage=6;
+                setDelay(200);
                 break;
         }
     }

@@ -1,4 +1,4 @@
-19
+25
 128
 128
 #Normal 0...7
@@ -62,3 +62,22 @@ false
 6.png
 0
 false
+#Fish 19...24
+7.png
+0
+false
+8.png
+0
+false
+9.png
+0
+false
+7.png
+0
+true
+8.png
+0
+true
+9.png
+0
+true
