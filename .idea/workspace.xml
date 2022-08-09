@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Added fishing state." />
+    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Edited time." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -187,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660039857267</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Edited time.">
+      <created>1660040123714</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1660040123714</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -218,6 +225,7 @@
     <MESSAGE value="Now avoids taskbars." />
     <MESSAGE value="Fixed muitidisplay." />
     <MESSAGE value="Added fishing state." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added fishing state." />
+    <MESSAGE value="Edited time." />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited time." />
   </component>
 </project>

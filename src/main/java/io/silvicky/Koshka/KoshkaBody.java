@@ -209,7 +209,7 @@ public class KoshkaBody extends JWindow {
                 }
                 else if(sran<20)
                 {
-                    curImage = 21;
+                    curImage = 22;
                     lastFrame=6;
                     framesInThisState=0;
                     setDelay(2000);
