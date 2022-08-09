@@ -152,7 +152,7 @@ public class KoshkaBody extends JWindow {
                     curImage = 19;
                     lastFrame=0;
                     framesInThisState=0;
-                    setDelay(500);
+                    setDelay(2000);
                     break;
                 }
                 break;
@@ -212,7 +212,7 @@ public class KoshkaBody extends JWindow {
                     curImage = 21;
                     lastFrame=6;
                     framesInThisState=0;
-                    setDelay(500);
+                    setDelay(2000);
                     break;
                 }
                 break;
@@ -246,7 +246,6 @@ public class KoshkaBody extends JWindow {
                 framesInThisState++;
                 if(framesInThisState>=10)
                 {
-                    setDelay(2000);
                     curImage=21;
                     break;
                 }
@@ -261,7 +260,6 @@ public class KoshkaBody extends JWindow {
                 framesInThisState++;
                 if(framesInThisState>=10)
                 {
-                    setDelay(2000);
                     curImage=24;
                     break;
                 }
