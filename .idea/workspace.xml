@@ -9,7 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Edited time." />
+    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Fixed 6-&gt;22.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,8 +49,8 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration name="KoshkaBody" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="io.silvicky.Koshka.KoshkaBody" />
+    <configuration name="Koshka" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.silvicky.Koshka.Koshka" />
       <module name="Koshka" />
       <extension name="coverage">
         <pattern>
@@ -62,7 +64,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.KoshkaBody" />
+        <item itemvalue="Application.io.silvicky.Koshka.KoshkaBody" />
       </list>
     </recent_temporary>
   </component>
@@ -194,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660040123714</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Fixed 6-&gt;22.">
+      <created>1660040347624</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1660040347624</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -226,6 +235,7 @@
     <MESSAGE value="Fixed muitidisplay." />
     <MESSAGE value="Added fishing state." />
     <MESSAGE value="Edited time." />
-    <option name="LAST_COMMIT_MESSAGE" value="Edited time." />
+    <MESSAGE value="Fixed 6-&gt;22." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed 6-&gt;22." />
   </component>
 </project>
