@@ -77,10 +77,8 @@ public class KoshkaManager extends JFrame {
     }
     public List<Class> findAllClasses(String packageName) throws IOException {
         return ClassPath.from(ClassLoader.getSystemClassLoader())
-                .getAllClasses()
+                .getTopLevelClasses(packageName)
                 .stream()
-                .filter(clazz -> clazz.getPackageName()
-                        .equalsIgnoreCase(packageName))
                 .map(ClassPath.ClassInfo::load)
                 .filter(Koshka.class::isAssignableFrom)
                 .collect(Collectors.toList());

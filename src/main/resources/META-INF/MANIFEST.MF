@@ -1,2 +1,3 @@
 Manifest-Version: 8.0
 Main-Class: io.silvicky.Koshka.KoshkaManager
+Class-Path: guava.jar
