@@ -1,2 +1,2 @@
 Manifest-Version: 8.0
-Main-Class: io.silvicky.Koshka.Koshka
+Main-Class: io.silvicky.Koshka.KoshkaManager

@@ -9,11 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Renamed classes.">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaManager.java" afterDir="false" />
-    </list>
+    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Added a convenient manager." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -225,7 +221,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660111801641</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Added a convenient manager.">
+      <created>1660116952636</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1660116952636</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -259,6 +262,7 @@
     <MESSAGE value="Edited time." />
     <MESSAGE value="Fixed 6-&gt;22." />
     <MESSAGE value="Renamed classes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed classes." />
+    <MESSAGE value="Added a convenient manager." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a convenient manager." />
   </component>
 </project>

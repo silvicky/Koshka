@@ -350,7 +350,4 @@ public class Koshka extends JWindow {
         timer.stop();
         dispose();
     }
-    public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-        Koshka koshka =new Koshka();
-    }
 }
