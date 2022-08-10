@@ -1,6 +1,6 @@
 # Koshka
 Koshka is a desktop pet program based on Java.
-##How to use?
+## How to use?
 Download the jar in release and guava, put them together, rename guava file to guava.jar and you can execute the main jar.
 
 Also, you can compile source with Maven and run.
