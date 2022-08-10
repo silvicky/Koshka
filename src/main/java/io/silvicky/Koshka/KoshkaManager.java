@@ -1,14 +1,18 @@
 package io.silvicky.Koshka;
 
+
+import com.google.common.reflect.ClassPath;
+
 import javax.swing.*;
-import javax.swing.GroupLayout.*;
+import javax.swing.GroupLayout.ParallelGroup;
+import javax.swing.GroupLayout.SequentialGroup;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.List;
+import java.util.Queue;
 import java.util.stream.Collectors;
 
 
@@ -17,8 +21,7 @@ public class KoshkaManager extends JFrame {
     JButton addButton,delButton;
     Queue<Koshka> queue;
     public static final String ver="0.2";
-    public KoshkaManager()
-    {
+    public KoshkaManager() throws IOException {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Koshka Manager");
         classList=new JComboBox<>(findAllClasses("io.silvicky.Koshka").toArray(new Class[0]));
@@ -72,28 +75,17 @@ public class KoshkaManager extends JFrame {
         pack();
         setVisible(true);
     }
-    public List<Class> findAllClasses(String packageName) {
-        InputStream stream = ClassLoader.getSystemClassLoader()
-                .getResourceAsStream(packageName.replaceAll("[.]", "/"));
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-        return reader.lines()
-                .filter(line -> line.endsWith(".class"))
-                .map(line -> getClass(line, packageName))
-                .filter(Objects::nonNull)
+    public List<Class> findAllClasses(String packageName) throws IOException {
+        return ClassPath.from(ClassLoader.getSystemClassLoader())
+                .getAllClasses()
+                .stream()
+                .filter(clazz -> clazz.getPackageName()
+                        .equalsIgnoreCase(packageName))
+                .map(ClassPath.ClassInfo::load)
                 .filter(Koshka.class::isAssignableFrom)
                 .collect(Collectors.toList());
     }
-    private static Class getClass(String className, String packageName) {
-        try {
-            return Class.forName(packageName + "."
-                    + className.substring(0, className.lastIndexOf('.')));
-        } catch (ClassNotFoundException ignored) {
-
-        }
-        return null;
-    }
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws IOException {
         KoshkaManager koshkaManager=new KoshkaManager();
     }
 }
