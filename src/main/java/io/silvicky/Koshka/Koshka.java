@@ -14,9 +14,9 @@ import java.io.*;
 import static java.lang.Math.random;
 
 public class Koshka extends JWindow {
-    ImageIcon[] images;
+    private static ImageIcon[] images;
     Clip[] clips;
-    int windowWidth,windowHeight;
+    private static int windowWidth,windowHeight;
     int windowX,windowY;
     int vX,vY;
     int minX,minY,maxX,maxY;
@@ -70,7 +70,7 @@ public class Koshka extends JWindow {
     public Koshka() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         setAlwaysOnTop(true);
         setBackground(new Color(0,0,0,0));
-        readImages();
+        if(images==null)readImages();
         readAudio();
         GraphicsConfiguration gc=getGraphicsConfiguration();
         Insets insets=Toolkit.getDefaultToolkit().getScreenInsets(gc);
