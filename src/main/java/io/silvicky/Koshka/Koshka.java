@@ -155,6 +155,14 @@ public class Koshka extends JWindow {
                     setDelay(2000);
                     break;
                 }
+                else if(sran<40)
+                {
+                    curImage=29;
+                    lastFrame=0;
+                    framesInThisState=0;
+                    setDelay(2000);
+                    break;
+                }
                 break;
             case 2:
             case 3:
@@ -215,6 +223,14 @@ public class Koshka extends JWindow {
                     setDelay(2000);
                     break;
                 }
+                else if(sran<40)
+                {
+                    curImage=30;
+                    lastFrame=6;
+                    framesInThisState=0;
+                    setDelay(2000);
+                    break;
+                }
                 break;
             case 16:
                 windowX+=vX;
@@ -267,6 +283,46 @@ public class Koshka extends JWindow {
             case 24:
                 curImage=6;
                 setDelay(200);
+                break;
+            case 25:
+            case 26:
+                if(ran()<1000)play(clips[3]);
+                curImage=51-curImage;
+                framesInThisState++;
+                if(framesInThisState>=15)
+                {
+                    lastFrame=25;
+                    curImage=29;
+                    break;
+                }
+                break;
+            case 27:
+            case 28:
+                if(ran()<1000)play(clips[3]);
+                curImage=55-curImage;
+                framesInThisState++;
+                if(framesInThisState>=15)
+                {
+                    lastFrame=27;
+                    curImage=30;
+                    break;
+                }
+                break;
+            case 29:
+                if(lastFrame==0)curImage=25;
+                else
+                {
+                    curImage=0;
+                    setDelay(200);
+                }
+                break;
+            case 30:
+                if(lastFrame==6)curImage=27;
+                else
+                {
+                    curImage=6;
+                    setDelay(200);
+                }
                 break;
         }
     }
@@ -324,6 +380,16 @@ public class Koshka extends JWindow {
             case 12:
             case 13:
                 startFall(true);
+                break;
+            case 25:
+            case 26:
+                curImage=0;
+                setDelay(200);
+                break;
+            case 27:
+            case 28:
+                curImage=6;
+                setDelay(200);
                 break;
             default:
                 play(clips[0]);

@@ -9,9 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Fixed JAR.&#10;Do you know how hard it was to get here?&#10;From now on, you need guava to use it.">
+    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Now automatically adds guava.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/Koshka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/Koshka.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/audio/audio.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/audio/audio.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/images.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/images.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660148677382</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Now automatically adds guava.">
+      <created>1660152893719</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1660152893719</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -289,6 +298,7 @@
     <MESSAGE value="Redirected main class." />
     <MESSAGE value="Now lists all usable classes." />
     <MESSAGE value="Fixed JAR.&#10;Do you know how hard it was to get here?&#10;From now on, you need guava to use it." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed JAR.&#10;Do you know how hard it was to get here?&#10;From now on, you need guava to use it." />
+    <MESSAGE value="Now automatically adds guava." />
+    <option name="LAST_COMMIT_MESSAGE" value="Now automatically adds guava." />
   </component>
 </project>

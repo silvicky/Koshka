@@ -1,4 +1,4 @@
-25
+31
 128
 128
 #Normal 0...7
@@ -79,5 +79,25 @@ true
 0
 true
 9.png
+0
+true
+#Sleep 25...28
+10.png
+0
+false
+11.png
+0
+false
+10.png
+0
+true
+11.png
+0
+true
+#Sigh 29...30
+12.png
+0
+false
+12.png
 0
 true
