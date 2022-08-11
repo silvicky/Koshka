@@ -9,9 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Added sleeping state.">
+    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Make images static.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaTemplate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/Koshka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/Koshka.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,8 +50,8 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.KoshkaManager">
-    <configuration name="Koshka" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.io.silvicky.Koshka.KoshkaManager">
+    <configuration name="io.silvicky.Koshka.Koshka" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="io.silvicky.Koshka.Koshka" />
       <module name="Koshka" />
       <extension name="coverage">
@@ -62,7 +64,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="KoshkaManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="io.silvicky.Koshka.KoshkaManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="io.silvicky.Koshka.KoshkaManager" />
       <module name="Koshka" />
       <extension name="coverage">
@@ -77,7 +79,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.KoshkaManager" />
+        <item itemvalue="Application.io.silvicky.Koshka.KoshkaManager" />
       </list>
     </recent_temporary>
   </component>
@@ -265,7 +267,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660203523396</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Make images static.">
+      <created>1660208173406</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1660208173406</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -280,7 +289,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial commit." />
     <MESSAGE value="Implemented basic function." />
     <MESSAGE value="Implemented mouse interactive function." />
     <MESSAGE value="Updated climb function." />
@@ -305,6 +313,7 @@
     <MESSAGE value="Fixed JAR.&#10;Do you know how hard it was to get here?&#10;From now on, you need guava to use it." />
     <MESSAGE value="Now automatically adds guava." />
     <MESSAGE value="Added sleeping state." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added sleeping state." />
+    <MESSAGE value="Make images static." />
+    <option name="LAST_COMMIT_MESSAGE" value="Make images static." />
   </component>
 </project>

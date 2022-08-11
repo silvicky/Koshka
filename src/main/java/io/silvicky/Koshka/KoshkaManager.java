@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class KoshkaManager extends JFrame {
     JComboBox classList;
     JButton addButton,delButton;
-    Queue<Koshka> queue;
+    Queue<KoshkaTemplate> queue;
     public static final String ver="0.2";
     public KoshkaManager() throws IOException {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -31,8 +31,8 @@ public class KoshkaManager extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Class requiredClass= (Class) classList.getSelectedItem();
-                    Constructor<? extends io.silvicky.Koshka.Koshka> constructor=requiredClass.getConstructor();
-                    Koshka object=constructor.newInstance();
+                    Constructor<? extends KoshkaTemplate> constructor=requiredClass.getConstructor();
+                    KoshkaTemplate object=constructor.newInstance();
                     queue.add(object);
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
@@ -42,7 +42,7 @@ public class KoshkaManager extends JFrame {
         delButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(!queue.isEmpty()) {
-                    queue.peek().dispose();
+                    queue.peek().exit();
                     queue.remove();
                 }
             }
@@ -80,7 +80,8 @@ public class KoshkaManager extends JFrame {
                 .getTopLevelClasses(packageName)
                 .stream()
                 .map(ClassPath.ClassInfo::load)
-                .filter(Koshka.class::isAssignableFrom)
+                .filter(KoshkaTemplate.class::isAssignableFrom)
+                .filter(aClass->aClass!=KoshkaTemplate.class)
                 .collect(Collectors.toList());
     }
     public static void main(String[] args) throws IOException {
