@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
 import java.util.ArrayDeque;
 import java.util.List;
 import java.util.Queue;
@@ -80,9 +81,9 @@ public class KoshkaManager extends JFrame {
         return ClassPath.from(ClassLoader.getSystemClassLoader())
                 .getTopLevelClasses(packageName)
                 .stream()
-                .map(ClassPath.ClassInfo::load)
-                .filter(KoshkaTemplate.class::isAssignableFrom)
-                .filter(aClass->aClass!=KoshkaTemplate.class)
+                .map(c->c.load())
+                .filter(c->KoshkaTemplate.class.isAssignableFrom(c))
+                .filter(c-> !Modifier.isAbstract(c.getModifiers()))
                 .collect(Collectors.toList());
     }
     public static void main(String[] args) throws IOException {
