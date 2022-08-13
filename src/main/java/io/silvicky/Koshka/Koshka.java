@@ -3,6 +3,7 @@ package io.silvicky.Koshka;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.awt.*;
 import java.io.IOException;
 
 import static java.lang.Math.random;
@@ -11,8 +12,8 @@ public class Koshka extends KoshkaTemplate{
     int vX,vY;
     int lastFrame;
     int framesInThisState;
-    public Koshka() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-        init();
+    public Koshka(GraphicsConfiguration gc) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        init(gc);
     }
     int ran()
     {

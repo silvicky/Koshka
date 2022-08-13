@@ -67,12 +67,11 @@ public abstract class KoshkaTemplate extends JWindow{
             clips[i].open(AudioSystem.getAudioInputStream(new BufferedInputStream(getClass().getResourceAsStream("/audio/"+readLine(in)))));
         }
     }
-    void init() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    void init(GraphicsConfiguration gc) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         setAlwaysOnTop(true);
         setBackground(new Color(0,0,0,0));
         readImages();
         readAudio();
-        GraphicsConfiguration gc=getGraphicsConfiguration();
         Insets insets=Toolkit.getDefaultToolkit().getScreenInsets(gc);
         setSize(windowWidth,windowHeight);
         minX=(int)gc.getBounds().getMinX()+insets.left;

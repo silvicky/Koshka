@@ -6,6 +6,7 @@ import com.google.common.reflect.ClassPath;
 import javax.swing.*;
 import javax.swing.GroupLayout.ParallelGroup;
 import javax.swing.GroupLayout.SequentialGroup;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -31,8 +32,8 @@ public class KoshkaManager extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Class requiredClass= (Class) classList.getSelectedItem();
-                    Constructor<? extends KoshkaTemplate> constructor=requiredClass.getConstructor();
-                    KoshkaTemplate object=constructor.newInstance();
+                    Constructor<? extends KoshkaTemplate> constructor=requiredClass.getConstructor(GraphicsConfiguration.class);
+                    KoshkaTemplate object=constructor.newInstance(getGraphicsConfiguration());
                     queue.add(object);
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
