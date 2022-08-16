@@ -8,6 +8,8 @@ Also, you can compile source with Maven and run.
 First, you should manage to import Koshka.jar.
 
 Then, create a class that extends KoshkaTemplate, just like Koshka do, and now you can develop!
+
+And, finally, create a pull request in https://github.com/silvicky/Koshka-extra to make it public.
 ## Requirement
 Koshka needs Java 8 or higher to run.
 ## Operating Systems status
