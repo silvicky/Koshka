@@ -6,10 +6,13 @@ import com.google.common.reflect.ClassPath;
 import javax.swing.*;
 import javax.swing.GroupLayout.ParallelGroup;
 import javax.swing.GroupLayout.SequentialGroup;
+import javax.swing.text.DefaultCaret;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 import java.util.ArrayDeque;
@@ -17,18 +20,25 @@ import java.util.List;
 import java.util.Queue;
 import java.util.stream.Collectors;
 
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
+
 
 public class KoshkaManager extends JFrame {
     JComboBox classList;
     JTextField genderInput;
+    JTextArea debugOutput;
+    JScrollPane scrollPane;
+    JScrollBar verticalBar;
     JButton addButton,delButton;
     Queue<KoshkaTemplate> queue;
-    public static final String ver="0.4";
+    public static final String ver="0.5";
     public KoshkaManager() throws IOException {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Koshka Manager");
         classList=new JComboBox<>(findAllClasses("io.silvicky.Koshka").toArray(new Class[0]));
         genderInput=new JTextField("",16);
+        debugOutput=new JTextArea("Welcome to Koshka!\nVer: "+ver+"\n",10,40);
+        scrollPane=new JScrollPane(debugOutput);
         addButton=new JButton("+");
         delButton=new JButton("-");
         addButton.addActionListener(new ActionListener() {
@@ -47,7 +57,10 @@ public class KoshkaManager extends JFrame {
                     }
                     queue.add(object);
                 } catch (Exception ex) {
-                    throw new RuntimeException(ex);
+                    StringWriter sw=new StringWriter();
+                    PrintWriter pw=new PrintWriter(sw);
+                    ex.printStackTrace(pw);
+                    debugOutput.append(sw.toString());
                 }
             }
         });
@@ -64,6 +77,7 @@ public class KoshkaManager extends JFrame {
         getContentPane().setLayout(layout);
         ParallelGroup hGroup = layout.createParallelGroup(GroupLayout.Alignment.LEADING);
         SequentialGroup h1 = layout.createSequentialGroup();
+        SequentialGroup h2 = layout.createSequentialGroup();
         h1.addContainerGap();
         h1.addComponent(addButton);
         h1.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
@@ -73,17 +87,25 @@ public class KoshkaManager extends JFrame {
         h1.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
         h1.addComponent(delButton);
         h1.addContainerGap();
+        h2.addContainerGap();
+        h2.addComponent(scrollPane);
+        h2.addContainerGap();
         hGroup.addGroup(GroupLayout.Alignment.TRAILING, h1);
+        hGroup.addGroup(GroupLayout.Alignment.TRAILING, h2);
         layout.setHorizontalGroup(hGroup);
         ParallelGroup vGroup = layout.createParallelGroup(GroupLayout.Alignment.LEADING);
         SequentialGroup v1 = layout.createSequentialGroup();
         v1.addContainerGap();
         ParallelGroup v2 = layout.createParallelGroup(GroupLayout.Alignment.BASELINE);
+        ParallelGroup v3=layout.createParallelGroup(GroupLayout.Alignment.BASELINE);
         v2.addComponent(addButton);
         v2.addComponent(classList, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE);
         v2.addComponent(genderInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE);
         v2.addComponent(delButton);
+        v3.addComponent(scrollPane);
         v1.addGroup(v2);
+        v1.addContainerGap();
+        v1.addGroup(v3);
         v1.addContainerGap();
         vGroup.addGroup(v1);
         layout.setVerticalGroup(vGroup);
