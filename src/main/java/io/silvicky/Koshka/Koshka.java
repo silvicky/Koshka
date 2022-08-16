@@ -1,5 +1,7 @@
 package io.silvicky.Koshka;
 
+import io.silvicky.String.ExpressionErr;
+
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -13,6 +15,11 @@ public class Koshka extends KoshkaTemplate{
     int lastFrame;
     int framesInThisState;
     public Koshka(GraphicsConfiguration gc) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        setGender();
+        init(gc);
+    }
+    public Koshka(GraphicsConfiguration gc,String val) throws IOException, UnsupportedAudioFileException, LineUnavailableException, ExpressionErr {
+        setGender(val);
         init(gc);
     }
     int ran()

@@ -1,5 +1,7 @@
 package io.silvicky.Koshka;
 
+import io.silvicky.String.ExpressionErr;
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -16,10 +18,14 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Random;
+
+import static io.silvicky.String.HexParser.parseHex;
 
 public abstract class KoshkaTemplate extends JWindow{
     ImageIcon[] images;
     Clip[] clips;
+    long gender;
     int windowWidth,windowHeight;
     int windowX,windowY;
     int minX,minY,maxX,maxY;
@@ -31,6 +37,19 @@ public abstract class KoshkaTemplate extends JWindow{
         String tmp="#";
         while(tmp.startsWith("#"))tmp=in.readLine();
         return tmp;
+    }
+    void setGender()
+    {
+        gender=new Random().nextLong();
+    }
+    void setGender(String val) throws ExpressionErr
+    {
+        gender=parseHex(val);
+    }
+    long getGender(){return gender;}
+    boolean getGender(int x)
+    {
+        return (gender>>x<<63>>63)!=0;
     }
     void readImages() throws IOException {
         int imageCount;

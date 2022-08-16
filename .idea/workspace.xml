@@ -9,8 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Supports multiple display now.">
+    <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Now rules out all abstract classes when creating objects.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/silvicky/String/HexParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/Koshka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/Koshka.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaTemplate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,7 +295,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660380470001</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Now rules out all abstract classes when creating objects.">
+      <created>1660399315311</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1660399315311</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -306,7 +317,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated climb function." />
     <MESSAGE value="Fixed glitch on Linux." />
     <MESSAGE value="Added sounds." />
     <MESSAGE value="Added hit ground sound." />
@@ -331,6 +341,7 @@
     <MESSAGE value="Make images static." />
     <MESSAGE value="Divided the main class into two classes.&#10;Reverted last commit." />
     <MESSAGE value="Supports multiple display now." />
-    <option name="LAST_COMMIT_MESSAGE" value="Supports multiple display now." />
+    <MESSAGE value="Now rules out all abstract classes when creating objects." />
+    <option name="LAST_COMMIT_MESSAGE" value="Now rules out all abstract classes when creating objects." />
   </component>
 </project>

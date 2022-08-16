@@ -20,21 +20,31 @@ import java.util.stream.Collectors;
 
 public class KoshkaManager extends JFrame {
     JComboBox classList;
+    JTextField genderInput;
     JButton addButton,delButton;
     Queue<KoshkaTemplate> queue;
-    public static final String ver="0.2";
+    public static final String ver="0.4";
     public KoshkaManager() throws IOException {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Koshka Manager");
         classList=new JComboBox<>(findAllClasses("io.silvicky.Koshka").toArray(new Class[0]));
+        genderInput=new JTextField("",16);
         addButton=new JButton("+");
         delButton=new JButton("-");
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Class requiredClass= (Class) classList.getSelectedItem();
-                    Constructor<? extends KoshkaTemplate> constructor=requiredClass.getConstructor(GraphicsConfiguration.class);
-                    KoshkaTemplate object=constructor.newInstance(getGraphicsConfiguration());
+                    Constructor<? extends KoshkaTemplate> constructor;
+                    KoshkaTemplate object;
+                    if(genderInput.getText().length()==0) {
+                        constructor = requiredClass.getConstructor(GraphicsConfiguration.class);
+                        object = constructor.newInstance(getGraphicsConfiguration());
+                    }
+                    else {
+                        constructor = requiredClass.getConstructor(GraphicsConfiguration.class,String.class);
+                        object = constructor.newInstance(getGraphicsConfiguration(),genderInput.getText());
+                    }
                     queue.add(object);
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
@@ -57,7 +67,9 @@ public class KoshkaManager extends JFrame {
         h1.addContainerGap();
         h1.addComponent(addButton);
         h1.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
-        h1.addComponent(classList, GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE);
+        h1.addComponent(classList, GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE);
+        h1.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
+        h1.addComponent(genderInput, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE);
         h1.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
         h1.addComponent(delButton);
         h1.addContainerGap();
@@ -69,6 +81,7 @@ public class KoshkaManager extends JFrame {
         ParallelGroup v2 = layout.createParallelGroup(GroupLayout.Alignment.BASELINE);
         v2.addComponent(addButton);
         v2.addComponent(classList, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE);
+        v2.addComponent(genderInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE);
         v2.addComponent(delButton);
         v1.addGroup(v2);
         v1.addContainerGap();
