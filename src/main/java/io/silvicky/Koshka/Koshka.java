@@ -26,7 +26,7 @@ public class Koshka extends KoshkaTemplate{
     {
         return (int) (random()*10000);
     }
-    void migrate() {
+    public void migrate() {
         int sran;
         switch(curImage) {
             case 0:
@@ -237,7 +237,7 @@ public class Koshka extends KoshkaTemplate{
         play(clips[1]);
         setDelay(50);
     }
-    void mouseClick(){
+    public void mouseClick(){
         switch (curImage)
         {
             case 2:
@@ -266,7 +266,7 @@ public class Koshka extends KoshkaTemplate{
                 play(clips[0]);
         }
     }
-    void mouseEnter()
+    public void mouseEnter()
     {
         if(curImage>=0&&curImage<=7)
         {
@@ -274,7 +274,7 @@ public class Koshka extends KoshkaTemplate{
             setDelay(50);
         }
     }
-    void mouseExit()
+    public void mouseExit()
     {
         if(curImage>=8&&curImage<=15)
         {

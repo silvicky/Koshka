@@ -38,22 +38,22 @@ public abstract class KoshkaTemplate extends JWindow{
         while(tmp.startsWith("#"))tmp=in.readLine();
         return tmp;
     }
-    void setGender()
+    public void setGender()
     {
         gender=new Random().nextLong();
     }
-    void setGender(String val) throws ExpressionErr
+    public void setGender(String val) throws ExpressionErr
     {
         gender=parseHex(val);
     }
-    long getGender(){return gender;}
-    boolean getGender(int x)
+    public long getGender(){return gender;}
+    public boolean getGender(int x)
     {
         return (gender>>x<<63>>63)!=0;
     }
     void readImages() throws IOException {
         int imageCount;
-        BufferedReader in=new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/images/images.txt")));
+        BufferedReader in=new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("images/images.txt")));
         imageCount=Integer.parseInt(readLine(in));
         windowWidth=Integer.parseInt(readLine(in));
         windowHeight=Integer.parseInt(readLine(in));
@@ -71,22 +71,22 @@ public abstract class KoshkaTemplate extends JWindow{
             AffineTransform tx=AffineTransform.getScaleInstance(isFlipped?-1:1,1);
             if(isFlipped)tx.translate(-windowWidth,0);
             tx.rotate(Math.toRadians(rot),(double)(windowWidth)/2, (double)(windowHeight)/2);
-            g.drawImage(ImageIO.read(getClass().getResourceAsStream("/images/"+fileName)),new AffineTransformOp(tx,AffineTransformOp.TYPE_NEAREST_NEIGHBOR),0,0);
+            g.drawImage(ImageIO.read(getClass().getResourceAsStream("images/"+fileName)),new AffineTransformOp(tx,AffineTransformOp.TYPE_NEAREST_NEIGHBOR),0,0);
             images[i]=new ImageIcon(result);
         }
     }
     void readAudio() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         int clipCount;
-        BufferedReader in=new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/audio/audio.txt")));
+        BufferedReader in=new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("audio/audio.txt")));
         clipCount= Integer.parseInt(readLine(in));
         clips=new Clip[clipCount];
         for(int i=0;i<clipCount;i++)
         {
             clips[i]= AudioSystem.getClip();
-            clips[i].open(AudioSystem.getAudioInputStream(new BufferedInputStream(getClass().getResourceAsStream("/audio/"+readLine(in)))));
+            clips[i].open(AudioSystem.getAudioInputStream(new BufferedInputStream(getClass().getResourceAsStream("audio/"+readLine(in)))));
         }
     }
-    void init(GraphicsConfiguration gc) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void init(GraphicsConfiguration gc) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         setAlwaysOnTop(true);
         setBackground(new Color(0,0,0,0));
         readImages();
@@ -131,7 +131,7 @@ public abstract class KoshkaTemplate extends JWindow{
         c.setFramePosition(0);
         c.start();
     }
-    abstract void migrate();
+    public abstract void migrate();
     class FormListener implements MouseListener {
         FormListener() {}
         public void mouseClicked(MouseEvent evt) {
@@ -164,14 +164,14 @@ public abstract class KoshkaTemplate extends JWindow{
             }
         }
     }
-    abstract void mouseClick();
-    abstract void mouseEnter();
-    abstract void mouseExit();
-    int translatePic(int src)
+    public abstract void mouseClick();
+    public abstract void mouseEnter();
+    public abstract void mouseExit();
+    public int translatePic(int src)
     {
         return src;
     }
-    void exit()
+    public void exit()
     {
         timer.stop();
         dispose();

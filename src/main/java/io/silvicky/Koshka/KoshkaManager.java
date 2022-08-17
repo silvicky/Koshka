@@ -26,7 +26,8 @@ public class KoshkaManager extends JFrame {
     JTextArea debugOutput;
     JScrollPane scrollPane;
     JButton addButton,delButton;
-    Queue<KoshkaTemplate> queue;
+    Queue<Object> queue;
+    Queue<Class<? extends KoshkaTemplate>> classQueue;
     public KoshkaManager() throws IOException {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Koshka Manager");
@@ -39,9 +40,9 @@ public class KoshkaManager extends JFrame {
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Class requiredClass= (Class) classList.getSelectedItem();
+                    Class<? extends KoshkaTemplate> requiredClass= (Class) classList.getSelectedItem();
                     Constructor<? extends KoshkaTemplate> constructor;
-                    KoshkaTemplate object;
+                    Object object;
                     if(genderInput.getText().length()==0) {
                         constructor = requiredClass.getConstructor(GraphicsConfiguration.class);
                         object = constructor.newInstance(getGraphicsConfiguration());
@@ -51,6 +52,7 @@ public class KoshkaManager extends JFrame {
                         object = constructor.newInstance(getGraphicsConfiguration(),genderInput.getText());
                     }
                     queue.add(object);
+                    classQueue.add(requiredClass);
                 } catch (Exception ex) {
                     StringWriter sw=new StringWriter();
                     PrintWriter pw=new PrintWriter(sw);
@@ -62,12 +64,13 @@ public class KoshkaManager extends JFrame {
         delButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(!queue.isEmpty()) {
-                    queue.peek().exit();
+                    classQueue.remove().cast(queue.peek()).exit();
                     queue.remove();
                 }
             }
         });
         queue=new ArrayDeque<>();
+        classQueue=new ArrayDeque<>();
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         ParallelGroup hGroup = layout.createParallelGroup(GroupLayout.Alignment.LEADING);
@@ -109,7 +112,7 @@ public class KoshkaManager extends JFrame {
     }
     public List<Class> findAllClasses(String packageName) throws IOException {
         return ClassPath.from(ClassLoader.getSystemClassLoader())
-                .getTopLevelClasses(packageName)
+                .getAllClasses()
                 .stream()
                 .map(c->c.load())
                 .filter(c->KoshkaTemplate.class.isAssignableFrom(c))
