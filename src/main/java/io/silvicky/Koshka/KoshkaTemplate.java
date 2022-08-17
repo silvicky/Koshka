@@ -113,7 +113,7 @@ public abstract class KoshkaTemplate extends JWindow{
         {
             migrate();
             setLocation(windowX,windowY);
-            imageLabel.setIcon(images[curImage]);
+            imageLabel.setIcon(images[translatePic(curImage)]);
             setSize(windowWidth,windowHeight+1);
             repaint();
             setSize(windowWidth,windowHeight);
@@ -167,6 +167,10 @@ public abstract class KoshkaTemplate extends JWindow{
     abstract void mouseClick();
     abstract void mouseEnter();
     abstract void mouseExit();
+    int translatePic(int src)
+    {
+        return src;
+    }
     void exit()
     {
         timer.stop();

@@ -11,7 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e177b6ca-9a85-4af6-8cfa-9253b97510c8" name="Changes" comment="Added gender, a value that allows customizing objects of a same class.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/silvicky/Koshka/KoshkaTemplate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +37,14 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../../../Program Files/apache-maven-3.8.6" />
+        <option name="userSettingsFile" value="C:\Program Files\apache-maven-3.8.6\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectId" id="2CtcQtT53lWlnmqssLFdCzItj5v" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />

@@ -6,7 +6,6 @@ import com.google.common.reflect.ClassPath;
 import javax.swing.*;
 import javax.swing.GroupLayout.ParallelGroup;
 import javax.swing.GroupLayout.SequentialGroup;
-import javax.swing.text.DefaultCaret;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,24 +19,20 @@ import java.util.List;
 import java.util.Queue;
 import java.util.stream.Collectors;
 
-import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
-
 
 public class KoshkaManager extends JFrame {
     JComboBox classList;
     JTextField genderInput;
     JTextArea debugOutput;
     JScrollPane scrollPane;
-    JScrollBar verticalBar;
     JButton addButton,delButton;
     Queue<KoshkaTemplate> queue;
-    public static final String ver="0.5";
     public KoshkaManager() throws IOException {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Koshka Manager");
         classList=new JComboBox<>(findAllClasses("io.silvicky.Koshka").toArray(new Class[0]));
         genderInput=new JTextField("",16);
-        debugOutput=new JTextArea("Welcome to Koshka!\nVer: "+ver+"\n",10,40);
+        debugOutput=new JTextArea("Welcome to Koshka!\n",10,40);
         scrollPane=new JScrollPane(debugOutput);
         addButton=new JButton("+");
         delButton=new JButton("-");
