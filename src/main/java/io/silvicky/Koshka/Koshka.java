@@ -41,7 +41,7 @@ public class Koshka extends KoshkaTemplate{
                     } else curImage = 6;
                     break;
                 }
-                if (ran() < 100) play(clips[0]);
+                if (ran() < 100) play(0);
                 sran=ran();
                 if (sran < 1)
                 {
@@ -81,7 +81,7 @@ public class Koshka extends KoshkaTemplate{
                     startFall(false);
                     break;
                 }
-                if (ran() < 100) play(clips[0]);
+                if (ran() < 100) play(0);
                 break;
             case 4:
             case 5:
@@ -96,7 +96,7 @@ public class Koshka extends KoshkaTemplate{
                     startFall(true);
                     break;
                 }
-                if (ran() < 100) play(clips[0]);
+                if (ran() < 100) play(0);
                 break;
             case 6:
             case 7:
@@ -110,7 +110,7 @@ public class Koshka extends KoshkaTemplate{
                     } else curImage = 0;
                     break;
                 }
-                if (ran() < 100) play(clips[0]);
+                if (ran() < 100) play(0);
                 sran=ran();
                 if (sran < 1)
                 {
@@ -145,12 +145,12 @@ public class Koshka extends KoshkaTemplate{
                     windowY=maxY;
                     if(vX>0)curImage=6;
                     else curImage=0;
-                    play(clips[2]);
+                    play(2);
                     setDelay(200);
                 }
                 break;
             case 17:
-                play(clips[0]);
+                play(0);
             case 18:
                 curImage=35-curImage;
                 framesInThisState++;
@@ -190,7 +190,7 @@ public class Koshka extends KoshkaTemplate{
                 break;
             case 25:
             case 26:
-                if(ran()<1000)play(clips[3]);
+                if(ran()<1000)play(3);
                 curImage=51-curImage;
                 framesInThisState++;
                 if(framesInThisState>=15)
@@ -202,7 +202,7 @@ public class Koshka extends KoshkaTemplate{
                 break;
             case 27:
             case 28:
-                if(ran()<1000)play(clips[3]);
+                if(ran()<1000)play(3);
                 curImage=55-curImage;
                 framesInThisState++;
                 if(framesInThisState>=15)
@@ -234,7 +234,7 @@ public class Koshka extends KoshkaTemplate{
         curImage=16;
         vX=side?-2:2;
         vY=10;
-        play(clips[1]);
+        play(1);
         setDelay(50);
     }
     public void mouseClick(){
@@ -263,7 +263,7 @@ public class Koshka extends KoshkaTemplate{
                 setDelay(200);
                 break;
             default:
-                play(clips[0]);
+                play(0);
         }
     }
     public void mouseEnter()

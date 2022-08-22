@@ -133,11 +133,11 @@ public abstract class KoshkaTemplate extends JWindow{
     {
         timer.setDelay((int) (ms/delayRatio));
     }
-    void play(Clip c) {
+    void play(int i) {
         if(!isAudioInited)return;
-        c.stop();
-        c.setFramePosition(0);
-        c.start();
+        clips[i].stop();
+        clips[i].setFramePosition(0);
+        clips[i].start();
     }
     public abstract void migrate();
     class FormListener implements MouseListener {
