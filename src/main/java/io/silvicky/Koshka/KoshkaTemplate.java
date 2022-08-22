@@ -25,6 +25,7 @@ import static io.silvicky.String.HexParser.parseHex;
 public abstract class KoshkaTemplate extends JWindow{
     ImageIcon[] images;
     Clip[] clips;
+    boolean isAudioInited;
     long gender;
     int windowWidth,windowHeight;
     int windowX,windowY;
@@ -75,15 +76,21 @@ public abstract class KoshkaTemplate extends JWindow{
             images[i]=new ImageIcon(result);
         }
     }
-    void readAudio() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    void readAudio() throws IOException {
+        isAudioInited=true;
         int clipCount;
         BufferedReader in=new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("audio/audio.txt")));
         clipCount= Integer.parseInt(readLine(in));
         clips=new Clip[clipCount];
-        for(int i=0;i<clipCount;i++)
+        try {
+            for (int i = 0; i < clipCount; i++) {
+                clips[i] = AudioSystem.getClip();
+                clips[i].open(AudioSystem.getAudioInputStream(new BufferedInputStream(getClass().getResourceAsStream("audio/" + readLine(in)))));
+            }
+        }
+        catch(Exception e)
         {
-            clips[i]= AudioSystem.getClip();
-            clips[i].open(AudioSystem.getAudioInputStream(new BufferedInputStream(getClass().getResourceAsStream("audio/"+readLine(in)))));
+            isAudioInited=false;
         }
     }
     public void init(GraphicsConfiguration gc) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
@@ -127,6 +134,7 @@ public abstract class KoshkaTemplate extends JWindow{
         timer.setDelay((int) (ms/delayRatio));
     }
     void play(Clip c) {
+        if(!isAudioInited)return;
         c.stop();
         c.setFramePosition(0);
         c.start();
